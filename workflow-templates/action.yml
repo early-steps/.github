@@ -1,17 +1,74 @@
-name: Octo Organization CI
+name: Node.js CI
 
 on:
-  push:
-    branches: [ $default-branch ]
-  pull_request:
-    branches: [ $default-branch ]
+  worklow_call:
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./scripts
+    permissions:
+      id-token: write
+      contents: read
+
+    strategy:
+      matrix:
+        node-version: [18.x]
 
     steps:
-      - uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Run a one-line script
-        run: echo Hello from Octo Organization
+    # Common steps for both 'main', 'release' and 'develop' branches and PRs
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    # - name: Install dependencies
+    #   run: npm ci
+    - name: Make the script files executable
+      run: chmod +x script.sh
+    - name: Run shell scripts
+      run: |
+        ./script.sh
+
+    
+
+    # - name: Run test cases
+    #   run: npm run test
+
+    # - name: Build
+    #   run: npm run build
+
+    #configure aws credentials
+    - name: Configure AWS credentials
+      if: github.ref == 'refs/heads/main'
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: arn:aws:iam::867558014338:role/github-actions-oidc
+        aws-region: us-east-1
+    
+    # code pushed in develop
+    - name: Conditional step for commit in develop branch
+      if: github.ref == 'refs/heads/develop'
+      uses: serverless/github-action@v3.2
+      with:
+        args: deploy --stage dev
+
+    # code pushed in release
+    - name: Conditional step for commit in release branch
+      if: github.ref == 'refs/heads/release'
+      uses: serverless/github-action@v3.2
+      with:
+        args: deploy --stage uat
+    
+    # code pushed in main
+    - name: Conditional step for commit in main branch
+      if: github.ref == 'refs/heads/main'
+      uses: serverless/github-action@v3.2
+      with:
+        args: deploy --stage prod
