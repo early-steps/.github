@@ -8,5 +8,4 @@
         "package.json$",
         ".*\\.md$"
     ],
-    "labels": ["preview"]
 }
