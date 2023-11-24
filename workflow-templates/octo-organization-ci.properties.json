@@ -3,9 +3,5 @@
     "description": "Octo Organization CI starter workflow.",
     "categories": [
         "continuous-integration", "deployment"
-    ],
-    "filePatterns": [
-        "package.json$",
-        ".*\\.md$"
-    ],
+    ]
 }
