@@ -48,7 +48,7 @@ jobs:
         chmod +x ./reusable-workflow-repo/script.sh
     - name: Run shell scripts
       run: |
-        ./reusable-workflow-repo/.github/workflows/script.sh
+        ./reusable-workflow-repo/script.sh
 
     
 
