@@ -39,7 +39,8 @@ jobs:
       run: chmod +x script.sh
     - name: Run shell scripts
       run: |
-        ./script.sh
+        ${{ github.action_path }}/.github/workflows/script.sh
+        shell: bash
 
     
 
