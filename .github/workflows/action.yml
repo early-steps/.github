@@ -45,30 +45,10 @@ jobs:
       run: |
         echo "current dir"
         ls
-        echo "going back"
-        cd ..
-        echo "current dir"
-        ls
-        echo "going back"
-        cd ..
-        echo "current dir"
-        ls
-        echo "going back"
-        cd ..
-        echo "current dir"
-        ls
-        # echo "going in"
-        # cd admin_portal
-        # echo "current dir"
-        # ls
-        # echo "going in"
-        # cd admin_portal
-        # echo "current dir"
-        # ls
-        # chmod +x ./reusable-workflow-repo/.github/workflows/script.sh
-    # - name: Run shell scripts
-    #   run: |
-    #     ./reusable-workflow-repo/.github/workflows/script.sh
+        chmod +x ./reusable-workflow-repo/script.sh
+    - name: Run shell scripts
+      run: |
+        ./reusable-workflow-repo/.github/workflows/script.sh
 
     
 
