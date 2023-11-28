@@ -19,13 +19,13 @@ jobs:
         node-version: [18.x]
 
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
     - name: Checkout reusable workflow dir
       uses: actions/checkout@v3
       with:
         repository: early-steps/.github
         path: reusable-workflow-repo
-    - name: Checkout code
-      uses: actions/checkout@v3
 
 
     # Common steps for both 'main', 'release' and 'develop' branches and PRs
