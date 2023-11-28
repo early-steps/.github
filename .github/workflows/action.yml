@@ -44,9 +44,10 @@ jobs:
     - name: Make the script files executable
       run: |
         ls
-        cd reusable-workflow-repo
+        cd ..
         ls
         cd ..
+        ls
         chmod +x ./reusable-workflow-repo/.github/workflows/script.sh
     - name: Run shell scripts
       run: |
