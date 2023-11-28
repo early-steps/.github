@@ -43,15 +43,20 @@ jobs:
     #     shell: bash
     - name: Make the script files executable
       run: |
+        echo "current dir"
         ls
+        echo "going back"
         cd ..
+        echo "current dir"
         ls
+        echo "going back"
         cd ..
+        echo "current dir"
         ls
-        chmod +x ./reusable-workflow-repo/.github/workflows/script.sh
-    - name: Run shell scripts
-      run: |
-        ./reusable-workflow-repo/.github/workflows/script.sh
+        # chmod +x ./reusable-workflow-repo/.github/workflows/script.sh
+    # - name: Run shell scripts
+    #   run: |
+    #     ./reusable-workflow-repo/.github/workflows/script.sh
 
     
 
