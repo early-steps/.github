@@ -9,7 +9,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./reusable-workflow-repo
+        # working-directory: ./reusable-workflow-repo
     permissions:
       id-token: write
       contents: read
@@ -42,10 +42,10 @@ jobs:
     #     ${{ github.action_path }}/.github/workflows/script.sh
     #     shell: bash
     - name: Make the script files executable
-      run: chmod +x script.sh
+      run: chmod +x ./reusable-workflow-repo/script.sh
     - name: Run shell scripts
       run: |
-        ./script.sh
+        ./reusable-workflow-repo/script.sh
 
     
 
