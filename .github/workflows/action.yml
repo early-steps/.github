@@ -57,6 +57,10 @@ jobs:
         cd admin_portal
         echo "current dir"
         ls
+        echo "going in"
+        cd admin_portal
+        echo "current dir"
+        ls
         # chmod +x ./reusable-workflow-repo/.github/workflows/script.sh
     # - name: Run shell scripts
     #   run: |
