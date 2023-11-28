@@ -21,12 +21,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-    - name: Checkout reusable workflow dir
-      uses: actions/checkout@v3
-      with:
-        repository: early-steps/.github
-        path: reusable-workflow-repo
-
     # Common steps for both 'main', 'release' and 'develop' branches and PRs
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
@@ -39,6 +33,7 @@ jobs:
       run: chmod +x script.sh
     - name: Run shell scripts
       run: |
+        echo "${{ github.action_path }}"
         ${{ github.action_path }}/.github/workflows/script.sh
         shell: bash
 
